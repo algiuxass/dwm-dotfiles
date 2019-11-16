@@ -1,8 +1,5 @@
 #!/bin/sh
 
-# You can change this depending on dotfiles location
-cd ~/.config/dwm/
-
 # Customize this
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
@@ -12,7 +9,7 @@ export LANGUAGE=en_US.UTF-8
 export MOZ_USE_XINPUT2=1
 
 # Customize stuff in compton.conf
-compton --config compton.conf
+compton -b --config ~/compton.conf
 
 # Background color
 xsetroot -solid '#0F111A'
