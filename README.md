@@ -39,13 +39,14 @@ This should compile dwm so you could run it.
 ## Install optional stuff
 You have to change ~/.config/dwm/main/config.h and ~/.config/dwm/login to not use these programs.
 Otherwise you will have problems.
-- mate-terminal (it's the terminal I've set in config.h)
 - unclutter (will hide mouse when you don't use it)
 - xorg-xsetroot (can set background color and image but only works when compton is not running)
 - hsetroot (same as xsetroot but only works when compton is running)
-- mate-settings-daemon (it's in ~/.config/dwm/login, disable it if you don't want MATE theme)
-- polkit-gnome-authentication-agent (popups for auth, programs which need root privileges will have some problems if this doesn't exist)
 - xinput (settings for my laptop trackpad, you can customize it for yours)
 - upower (for getting battery levels)
 - discord (chat for gamers, it will autostart on 3rd tab)
 - firefox (browser)
+- mate-settings-daemon (it's in ~/.config/dwm/login, disable it if you don't want MATE theme)
+- polkit-gnome-authentication-agent (popups for auth, programs which need root privileges will have some problems if this doesn't exist)
+- mate-terminal (it's the terminal I've set in config.h)
+- mate (for those three above)
