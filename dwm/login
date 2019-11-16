@@ -19,7 +19,7 @@ xsetroot -solid '#0F111A'
 hsetroot -solid '#0F111A'
 
 # To fix my laptop display problems and flickering
-xcalib -c -a; xcalib -b 3 -a; xcalib -co 100.0 -a; xgamma -gamma 0.9;
+# xcalib -c -a; xcalib -b 3 -a; xcalib -co 100.0 -a; xgamma -gamma 0.9;
 
 # Startup programs
 discord &
