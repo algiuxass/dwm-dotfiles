@@ -13,6 +13,7 @@ My DWM tiling window manager dotfiles
 
 ## Add dwm desktop entry
 Create a new file to here: /usr/share/xsessions/dwm.desktop
+
 Usage: `sudo nano /usr/share/xsessions/dwm.desktop`
 
 ```
@@ -31,6 +32,7 @@ It shouldn't be that hard
 
 ## Go to ~/.config/dwm/main and compile it
 Write this command: `sudo make install`
+
 This should compile dwm so you could run it.
 
 ## Install required stuff
@@ -38,6 +40,7 @@ This should compile dwm so you could run it.
 
 ## Install optional stuff
 You have to change ~/.config/dwm/main/config.h and ~/.config/dwm/login to not use these programs.
+
 Otherwise you will have problems.
 - unclutter (will hide mouse when you don't use it)
 - xorg-xsetroot (can set background color and image but only works when compton is not running)
