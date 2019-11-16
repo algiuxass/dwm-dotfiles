@@ -50,3 +50,5 @@ Otherwise you will have problems.
 - polkit-gnome-authentication-agent (popups for auth, programs which need root privileges will have some problems if this doesn't exist)
 - mate-terminal (it's the terminal I've set in config.h)
 - mate (for those three above)
+
+`yay -S unclutter xorg-xsetroot hsetroot xinput upower discord firefox mate mate-terminal`
