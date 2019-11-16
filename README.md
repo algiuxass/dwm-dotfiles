@@ -49,6 +49,7 @@ Otherwise you will have problems.
 - upower (for getting battery levels)
 - discord (chat for gamers, it will autostart on 3rd tab)
 - firefox (browser)
+- xinput (used for my laptop trackpad fix)
 - mate-settings-daemon (it's in ~/.config/dwm/login, disable it if you don't want MATE theme)
 - polkit-gnome-authentication-agent (popups for auth, programs which need root privileges will have some problems if this doesn't exist)
 - mate-terminal (it's the terminal I've set in config.h)
