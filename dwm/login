@@ -1,0 +1,92 @@
+#!/bin/sh
+
+# You can change this depending on dotfiles location
+cd ~/.config/dwm/
+
+# Customize this
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+export LANGUAGE=en_US.UTF-8
+
+# Better Firefox scrolling (laptop trackpads)
+export MOZ_USE_XINPUT2=1
+
+# Customize stuff in compton.conf
+compton --config compton.conf
+
+# Background color
+xsetroot -solid '#0F111A'
+hsetroot -solid '#0F111A'
+
+# To fix my laptop display problems and flickering
+xcalib -c -a; xcalib -b 3 -a; xcalib -co 100.0 -a; xgamma -gamma 0.9;
+
+# Startup programs
+discord &
+firefox https://www.google.com/ &
+
+#compton -CGb &
+
+#/usr/bin/ck-launch-session &
+#/usr/local/bin/stalonetray &
+#/usr/bin/nm-applet &
+#/usr/bin/gnome-volume-control-applet &
+#feh -z -Z --bg-scale /home/jguldmyr/Pictures/dwm_pattern.png
+#feh -z -Z -B black -b trans --bg-scale /home/jguldmyr/Pictures/Flow.png
+
+# hide cursor
+#unclutter -idle 3 -jitter 2 -root &
+unclutter -ignore-scrolling -idle 1 -jitter 1 -root &
+
+/usr/lib/mate-settings-daemon/mate-settings-daemon &
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+
+# mate-power-manager &
+
+while true; do
+
+	#while loop to update statusbar with some goodies
+	{
+		while true; do
+			xinput set-prop "ETPS/2 Elantech Touchpad" "libinput Tapping Enabled" 1
+			xinput set-prop "ETPS/2 Elantech Touchpad" "libinput Natural Scrolling Enabled" 1
+			xinput set-prop "ETPS/2 Elantech Touchpad" "libinput Horizontal Scroll Enabled" 1
+
+			#battery
+			#battotal=`awk '/last full capacity/{print $4}' < /proc/acpi/battery/BAT0/info`;
+			#batfree=`awk '/remaining capacity/{print $3}' < /proc/acpi/battery/BAT0/state`;
+			battper=`upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep percentage | awk '{ print $2 }'`;
+			battstat=`upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep state | awk '{ print $2 }'`;
+			if [ $battstat = "discharging" ] ;then
+			battstat=""
+			else
+			battstat="+"
+			fi
+			#battery=`awk '/charging state/{print $3}' < /proc/acpi/battery/BAT0/state`;
+			#memfreak to get it in MB
+			memfreak2=`grep MemFree /proc/meminfo | awk '{ print $2 }'`;
+
+			memfreak=$(( $memfreak2/1024 ));
+			#time
+			CLK=$( date '+%Y-%m-%d %H:%M:%S' )
+			#$( date +'%a %b %d %R:%S %Z' )
+			#volume
+#			VOL=$( amixer get Master | tail -1 | awk '{ print $5 }' | tr -d '[]' )
+			#loadavg
+			#AVG=$( cat /proc/loadavg | cut -d ' ' -f -3 )
+			#network stats in Bytes
+			#NW=$( dstat -n --nocolor 1 1 | tail -1 | awk '{ print $1, $2}' )
+			#this one is not so good, increases a delay of 1-2s of the updating.
+			#put it in the xsetrootname plz (tip of the day, do not put | as first char after "
+			xsetroot -name "${memfreak}MiB $battstat$battper $CLK "
+			sleep 0.25
+		done
+	} &
+
+	# Finally start dwm!
+	dwm > logs.txt
+
+	# I forgot what is this for, but I guess when you terminate
+	# dwm it will restart and that while loop will too.
+	kill $!
+done
